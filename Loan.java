@@ -10,21 +10,27 @@ public class Loan {
 	}
 
 	/** Construct a loan with specified annual interest rate, number of years and loan amount */
-	public Loan(double annualInterestRate, int numberOfYears, double loanAmount) {
-		this.annualInterestRate = annualInterestRate;
-		this.numberOfYears = numberOfYears;
-		this.loanAmount = loanAmount;
+	public Loan(double annualInterestRate, int numberOfYears, double loanAmount) throws IllegalArgumentException {
+		setAnnualInterestRate(annualInterestRate);
+		setNumberOfYears(numberOfYears);
+		setLoanAmount(loanAmount);
+		
 		loanDate = new java.util.Date();
 	}
-
+	
 	/** Return annualInterestRate */
 	public double getAnnualInterestRate() {
 		return annualInterestRate;
 	}
 
 	/** Set a new annualInterestRate */
-	public void setAnnualInterestRate(double annualInterestRate) {
-		this.annualInterestRate = annualInterestRate;
+	public void setAnnualInterestRate(double annualInterestRate) throws IllegalArgumentException {
+		if(annualInterestRate > 0){
+			this.annualInterestRate = annualInterestRate;
+		}
+		else{
+			throw new IllegalArgumentException("Annual Interest Rate cannot be smaller than zero or equal to zero.");
+		}
 	}
 
 	/** Return numberOfYears */
@@ -33,8 +39,13 @@ public class Loan {
 	}
 
 	/** Set a new numberOfYears */
-	public void setNumberOfYears(int numberOfYears) {
-		this.numberOfYears = numberOfYears;
+	public void setNumberOfYears(int numberOfYears) throws IllegalArgumentException {
+		if(numberOfYears > 0){
+			this.numberOfYears = numberOfYears;
+		}
+		else{
+			throw new IllegalArgumentException("Number Of Years cannot be smaller than zero or equal to zero.");
+		}
 	}
 
 	/** Return loanAmount */
@@ -43,8 +54,13 @@ public class Loan {
 	}
 
 	/** Set a newloanAmount */
-	public void setLoanAmount(double loanAmount) {
-		this.loanAmount = loanAmount;
+	public void setLoanAmount(double loanAmount) throws IllegalArgumentException {
+		if(loanAmount > 0){
+			this.loanAmount = loanAmount;
+		}
+		else{
+			throw new IllegalArgumentException("Loan Amount cannot be smaller than zero or equal to zero.");
+		}
 	}
 
 	/** Find monthly payment */
@@ -65,3 +81,4 @@ public class Loan {
 		return loanDate;
 	}
 }
+
